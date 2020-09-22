@@ -24,8 +24,8 @@ jobs:
       with:
           name: testing1
           path: .
-    - name: Build with Maven
-      uses: ./
-        run:rsync -avz -e "ssh -i my_ssh_key -o StrictHostKeyChecking=no" ./testing1/target/ vagrant@172.42.42.101:/home/vagrant
-      env:
-        my_ssh_key: ${{ secrets.SSH_KEY }}
+    - name: download artifact
+      uses: actions/upload-artifact@master
+      with:
+          name: testing1
+          path: ./maven_testing_1
