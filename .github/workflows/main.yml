@@ -19,9 +19,13 @@ jobs:
     - name: build and deploy site
       run: |
         mvn -B package --file pom.xml
-        mkdir ~/.ssh
-        echo "$my_ssh_key" > ~/.ssh/gh_actions_key
-        chmod 600 ~/.ssh/gh_actions_key
-        rsync -avz -e "ssh -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" /home/runner/work/maven_testing_1/maven_testing_1/target/ vagrant@172.42.42.101:/home/vagrant/maven_deployment
+    - name: deploy to server
+      uses: amar5607/maven_testing_1@master
       env:
-        my_ssh_key: ${{ secrets.KEYS }}
+          DEPLOY_KEY: ${{ secrets.KEYS }}
+          ARGS: "-e -c -r --delete"
+          SERVER_PORT: 22
+          FOLDER: "./"
+          SERVER_IP: 172.42.42.101
+          USERNAME:  vagrant
+          SERVER_DESTINATION: /home/vagrant
