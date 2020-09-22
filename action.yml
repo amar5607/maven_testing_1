@@ -70,5 +70,7 @@ inputs:
     description: 'include more ciphers with use_insecure_cipher'
     default: false
 runs:
-  using: 'java1.8'
-  main: 'src/main/java/com/coveros/demo/helloworld/HelloWorld.java'
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.who-to-greet }}
