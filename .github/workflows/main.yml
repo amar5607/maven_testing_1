@@ -26,5 +26,5 @@ jobs:
         port : 22
         key: ${{ secrets.KEYS }}
       with:
-        source: "./target/*.jar"
+        source: "/home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar"
         target: "/home/vagrant/"
