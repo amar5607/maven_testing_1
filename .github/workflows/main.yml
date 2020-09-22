@@ -19,8 +19,6 @@ jobs:
     - name: build and deploy site
       run: |
         mvn -B package --file pom.xml
-    - name: deploy to server
-      uses: amar5607/maven_testing_1@master
       env:
           DEPLOY_KEY: ${{ secrets.KEYS }}
           ARGS: "-e -c -r --delete"
