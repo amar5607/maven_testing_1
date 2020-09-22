@@ -26,5 +26,5 @@ jobs:
         port : 22
         key: ${{ secrets.KEYS }}
       with:
-        source: "./target/*.jar"
+        source: "./target/*"
         target: "/home/vagrant/"
