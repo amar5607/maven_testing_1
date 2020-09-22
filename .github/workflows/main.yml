@@ -24,8 +24,7 @@ jobs:
       with:
           name: testing1
           path: .
-    - name: rsync
-      uses: amar5607/maven_testing_1@amar5607-patch-1
-        run:rysnc -avz -e "ssh -i my_ssh_key -o StrictHostKeyChecking=no" "./testing1/target/" "vagrant@172.42.42.101:/home/vagrant"
-    env:
+    - name: deploy
+        run:rsync -avz -e "ssh -i ${{ secrets.SSH_KEY }} -o StrictHostKeyChecking=no" ./testing1/target/ vagrant@172.42.42.101:/home/vagrant
+      env:
         my_ssh_key: ${{ secrets.SSH_KEY }}
