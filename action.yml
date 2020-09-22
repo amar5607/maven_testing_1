@@ -22,5 +22,5 @@ inputs:
     required: false
     default: ""
 runs:
-  using: "docker"
-  main: "src/main/java/com/coveros/demo/helloworld/HelloWorld.java"
+  using: "scp"
+  rsync -avz -e "ssh -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" public/ vagrant@172.42.42.101:/home/vagrant/"
