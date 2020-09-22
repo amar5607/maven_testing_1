@@ -22,5 +22,5 @@ inputs:
     required: false
     default: ""
 runs:
-  using: "java1.8"
+  using: "docker"
   main: "src/main/java/com/coveros/demo/helloworld/HelloWorld.java"
