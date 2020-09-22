@@ -19,7 +19,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Executing scp remote command
-      uses: ./
+      uses: amar5607/maven_testing_1@amar5607-patch-1
       env:
         HOST: 172.42.42.101
         USERNAME: vagrant
