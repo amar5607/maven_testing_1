@@ -25,7 +25,7 @@ jobs:
           name: testing1
           path: .
     - name: download artifact
-      uses: actions/upload-artifact@master
+      uses: actions/download-artifact@master
       with:
           name: testing1
           path: ./maven_testing_1
