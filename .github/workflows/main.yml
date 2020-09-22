@@ -19,7 +19,11 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: deploy code
-      run: scp -i my_ssh_key ./target/*.jar vagrant@172.42.42.101:/home/vagrant/
+      run: |
+           mkdir ~/.ssh
+           echo "$my_ssh_key" > ~/.ssh/gh_actions_key
+           chmod 600 ~/.ssh/gh_actions_key
+           scp -i ~/.ssh/gh_actions_key ./target/*.jar vagrant@172.42.42.101:/home/vagrant/
       env: 
         my_ssh_key: ${{ secrets.KEYS }}
          
