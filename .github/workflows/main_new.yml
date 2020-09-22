@@ -19,12 +19,10 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Executing scp remote command
-      uses: amar5607/maven_testing_1@master
+      run:  |
+        mkdir ~/.ssh
+        echo "$my_ssh_key" > ~/.ssh/gh_actions_key
+        chmod 600 ~/.ssh/gh_actions_key
+        rsync -avz -e "ssh -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" ./target/ vagrant@172.42.42.101:/home/vagrant/
       env:
-        HOST: 172.42.42.101
-        USERNAME: amar
-        port : 22
-        key: ${{ secrets.KEYS }}
-      with:
-        source: "./target/*.jar"
-        target: "/home/vagrant/"
+        my_ssh_key: ${{ secrets.KEYS }}
