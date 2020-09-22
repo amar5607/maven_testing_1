@@ -21,6 +21,6 @@ jobs:
     - name: deploy code
       run: scp -i my_ssh_key ./target/*.jar vagrant@172.42.42.101:/home/vagrant/
       env: 
-        my_ssh_key: ${{ secrets.SSH_KEY }}
+        my_ssh_key: ${{ secrets.KEYS }}
          
    
