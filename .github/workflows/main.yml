@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ls -a via ssh
-        uses: amar5607/maven_testing1@amar5607-patch-1
+        uses: amar5607/maven_testing1master
         with:
          command: |
           cd /tmp
