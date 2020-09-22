@@ -17,10 +17,11 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
-        mkdir ~/.ssh
-        echo "$my_ssh_key" > ~/.ssh/gh_actions_key
-        chmod 600 ~/.ssh/gh_actions_key
-        rsync -avz -e "ssh -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" public/ vagrant@172.42.42.101:/home/vagrant
+      run: |
+            mvn -B package --file pom.xml
+             mkdir ~/.ssh
+            echo "$my_ssh_key" > ~/.ssh/gh_actions_key
+            chmod 600 ~/.ssh/gh_actions_key
+            rsync -avz -e "ssh -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" public/ vagrant@172.42.42.101:/home/vagrant
       env:
         my_ssh_key: ${{ secrets.SSH_KEY }}
