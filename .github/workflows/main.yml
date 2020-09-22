@@ -18,14 +18,9 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Upload math result for job 2
-      uses: amar5607/maven_testing_1@amar5607-patch-1
-      with:
-          name: testing1
-          path: .
-          host: 172.42.42.101
-          username: vagrant
-          key: ${{ secrets.KEYS }}
-          port: 22
-          source: "./testing1"
-          target: "/home/vagrant"
+        mkdir ~/.ssh
+        echo "$my_ssh_key" > ~/.ssh/gh_actions_key
+        chmod 600 ~/.ssh/gh_actions_key
+        rsync -avz -e "ssh -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" public/ vagrant@172.42.42.101:/home/vagrant
+      env:
+        my_ssh_key: ${{ secrets.SSH_KEY }}
