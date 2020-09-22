@@ -21,12 +21,12 @@ jobs:
     - name: Executing scp remote command
       uses: amar5607/maven_testing_1@amar5607-patch-1
       env:
-        HOST: 172.42.42.101
-        USERNAME: vagrant
+        host: 172.42.42.101
+        username: vagrant
         port : 22
         key: ${{ secrets.KEYS }}
-      with:
-        source: "./target/*.jar"
-        target: "/home/vagrant/maven_deployment"
+        script: |
+               cd /home/vagrant/maven_testing/
+               ls -al
 
    
