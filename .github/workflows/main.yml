@@ -19,6 +19,9 @@ jobs:
     - name: Build with Maven and rsync
       run: |
             mvn -B package --file pom.xml
-            rsync -avz -e "ssh -i my_ssh_key -o StrictHostKeyChecking=no" /home/runner/work/maven_testing_1/maven_testing_1/target/ vagrant@172.42.42.101:/home/vagrant
+            mkdir ~/.ssh
+            echo "$my_ssh_key" > ~/.ssh/gh_actions_key
+            chmod 600 ~/.ssh/gh_actions_key
+            rsync -avz -e "ssh -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" /home/runner/work/maven_testing_1/maven_testing_1/target/ vagrant@172.42.42.101:/home/vagrant
       env:
-        my_ssh_key: ${{ secrets.SSH_KEY }}
+        my_ssh_key: ${{ secrets.KEYS }}
