@@ -18,15 +18,9 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Executing scp remote command
-      uses: amar5607/maven_testing_1@amar5607-patch-1
-      env:
-        host: 172.42.42.101
-        username: vagrant
-        port : 22
-        key: ${{ secrets.KEYS }}
-        script: |
-               cd /home/vagrant/maven_testing/
-               ls -al
-
+    - name: deploy code
+      run: scp -i my_ssh_key ./target/*.jar vagrant@172.42.42.101:/home/vagrant/
+      env: 
+        my_ssh_key: ${{ secrets.SSH_KEY }}
+         
    
