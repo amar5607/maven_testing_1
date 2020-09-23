@@ -22,6 +22,6 @@ jobs:
             mkdir ~/.ssh
             echo "$my_ssh_key" > ~/.ssh/gh_actions_key
             chmod 600 ~/.ssh/gh_actions_key
-            rsync -avz -e "ssh -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" /home/runner/work/maven_testing_1/maven_testing_1/target/ vagrant@172.42.42.101:/home/vagrant
+            rsync -avz -e "ssh -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" /home/runner/work/maven_testing_1/maven_testing_1/target/ vagrant@node1.example.com:/home/vagrant
       env:
-        my_ssh_key: ${{ deploy_keys.KEYS }}
+        my_ssh_key: ${{ secrets.KEYS }}
