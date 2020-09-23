@@ -18,7 +18,8 @@ jobs:
         java-version: 1.8
     - uses: actions/checkout@v2
       with:
-       key: ${{ secrets.KEYS }}     
-  run: |
+       key: ${{ secrets.KEYS }} 
+    - name: rsync over ssh   
+      run: |
             mvn -B package --file pom.xml
             rsync /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar root@172.42.42.101:/root/
