@@ -16,9 +16,9 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build with Maven and rsync
-      run: |
+    - uses: actions/checkout@v2
+      with:
+       key: ${{ secrets.KEYS }}     
+  run: |
             mvn -B package --file pom.xml
-            rsync -e "ssh-i /home/runner/work/maven_testing_1/maven_testing_1/target/' root@172.42.42.101:/root/
-      env:
-        my_ssh_key: ${{ secrets.KEYS }}
+            rsync /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar root@172.42.42.101:/root/
