@@ -23,7 +23,7 @@ jobs:
           DEPLOY_KEY: ${{ secrets.SSH_KEY }}
           ARGS: "-e -c -r --delete"
           SERVER_PORT: 22
-          FOLDER: "./target/*.jar"
+          FOLDER: "/home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar"
           SERVER_IP: 172.42.42.102
           USERNAME: root
           SERVER_DESTINATION: /root/
