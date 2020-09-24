@@ -24,6 +24,7 @@ jobs:
             cp -r ./tmp_file.pem ~/.ssh/
             chmod 400 ~/.ssh/tmp_file.pem
             ls -lrt ~/.ssh
+            hostname -i
             ssh -o StrictHostKeyChecking=no -i ~/.ssh/tmp_file.pem  gitaction@54.190.231.180 uptime
             scp -r ~/.ssh/tmp_file.pem /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar gitaction@54.190.231.180:/home/gitaction 
             ls -lrt
