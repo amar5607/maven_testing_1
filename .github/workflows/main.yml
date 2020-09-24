@@ -26,7 +26,6 @@ jobs:
           USERNAME: root
           PORT: 22
           KEY: ${{ secrets.SSH_KEY }}
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
       with:
             source: "/home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar"
             target: "/root/chumma"
