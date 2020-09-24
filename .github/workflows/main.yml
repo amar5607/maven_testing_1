@@ -14,7 +14,7 @@ jobs:
      - name: Checkout
        uses: actions/checkout@v2
      - name: Install SSH key
-       uses: amar5607/maven_testing_1@v2
+       uses: amar5607/maven_testing_1@master
        with:
            key: ${{ secrets.SSH_KEY }}
            name: id_rsa
