@@ -19,12 +19,13 @@ jobs:
     - name: rsync over ssh   
       run: |
             mvn -B package --file pom.xml
-            sshpass -p vagrant rsync -ae "ssh -p 22" ./testing/target/  root@172.42.42.101:/root/chumma
     - name: Upload math result for job 2
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@amar5607-patch-1
       with:
           name: testing1
           path: .
+    - name: rsync over ssh   
+      run: sshpass -p vagrant rsync -ae "ssh -p 22" ./testing/target/  root@172.42.42.101:/root/chumma
 
            
           
