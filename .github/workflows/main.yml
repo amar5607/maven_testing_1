@@ -23,8 +23,9 @@ jobs:
             mkdir -p ~/.ssh/
             echo "$SSH_PRIVATE_KEY" > ~/.ssh/my_ssh_key
             cp -r ~/.ssh/my_ssh_key ~/.ssh/mysshkey.pem
-            chmod 700 ~/
             chmod 700 ~/.ssh
+            ls -lrt ~/.ssh
+            chmod 400 ~/.ssh/mysshkey.pem
             ls -lrt ~/.ssh/mysshkey.pem
             ssh -i ~/.ssh/mysshkey.pem  gitaction@54.190.231.180
             ls -lrt
