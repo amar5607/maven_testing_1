@@ -14,11 +14,12 @@ jobs:
     - name: Checkout source codes
       uses: actions/checkout@v2
     - name : chumma
-      run: mkdir -p ~/.ssh/
-    - name: Install SSH key
-      uses: ./
-      with:
-            key: ${{ secrets.secret_key }}
-            known_hosts: ${{ secrets.KNOWN_HOSTS }}
-    - name : checking .ssh
-      run : ls -l ~/.ssh
+      run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ../private.key
+          sudo chmod 600 ../private.key
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          rsync -avz -e "ssh -i ../private.key -o StrictHostKeyChecking=no" /home/runner/work/maven_testing_1/maven_testing_1/maven_testing_1/testing1/target/ root@172.42.42.101:/root
+      env:
+          SSH_PRIVATE_KEY: ${{secrets.secret_key}}
+          SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
