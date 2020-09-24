@@ -22,4 +22,7 @@ jobs:
     - name: rsync over ssh   
       run: |
             mvn -B package --file pom.xml
-            scp /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar root@172.42.42.101:/root/
+            mkdir ~/.ssh
+            echo "$my_ssh_key" > ~/.ssh/gh_actions_key
+            chmod 600 ~/.ssh/gh_actions_key
+            rsync -avz -e "ssh -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" /home/runner/work/maven_testing_1/maven_testing_1/target/ root@172.42.42.102:/root/
