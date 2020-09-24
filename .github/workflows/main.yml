@@ -24,6 +24,8 @@ jobs:
       run: |
           mkdir -p ~/.ssh/
           ls -lrt ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/ssh/private.key
+          ls -lrt ~/.ssh
       env:
           SSH_PRIVATE_KEY: ${{secrets.secret_key}}
           SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
