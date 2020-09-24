@@ -23,5 +23,8 @@ jobs:
             mkdir -p ~/.ssh/
             cp -r ./tmp_file.pem ~/.ssh/
             ls -lrt  ~/.ssh/
+            chmod 400 ~/.ssh/tmp_file.pem
+            ssh -i ~/.ssh/tmp_file.pem  gitaction@54.190.231.180
+            ls -lrt
       env:
           SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
