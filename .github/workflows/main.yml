@@ -31,5 +31,5 @@ jobs:
             ls -lrt ~/jar_file/
             rsync -avz -e "ssh -i ~/.ssh/private.key -o StrictHostKeyChecking=no" /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar root@172.42.42.101:/root/
       env:
-          SSH_PRIVATE_KEY: ${{secrets.secret_key}}
+          SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
           SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
