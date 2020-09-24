@@ -25,7 +25,7 @@ jobs:
             chmod 600 ~/.ssh/my_ssh_key
             ls -lrt ~/.ssh/my_ssh_key
             hostname -i
-            ssh -i ~/.ssh/my_ssh_key  git_action_test@54.190.231.180
+            ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/my_ssh_key  centos@54.190.231.180
             ls -lrt
       env:
           SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
