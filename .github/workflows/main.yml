@@ -25,7 +25,7 @@ jobs:
           name: testing1
           path: .
     - name: Deploy to Server
-      uses: amar5607/maven_testing_1@master
+      uses: amar5607/maven_testing_1@amar5607-patch-1
       env:
         HOST: 172.42.42.102
         USERNAME: root
