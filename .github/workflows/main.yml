@@ -13,8 +13,10 @@ jobs:
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v2
+    - name : chumma
+      run: mkdir -p ~/.ssh/
     - name: Install SSH key
-      uses: ./.
+      uses: ./.ssh/
       with:
             key: ${{ secrets.secret_key }}
             known_hosts: ${{ secrets.KNOWN_HOSTS }}
