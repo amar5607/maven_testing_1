@@ -25,7 +25,7 @@ jobs:
             cp -r ~/.ssh/my_ssh_key ~/.ssh/mysshkey.pem
             chmod 400 ~/.ssh/mysshkey.pem
             ls -lrt ~/.ssh/mysshkey.pem
-            ssh -i ~/.ssh/mysshkey.pem  gitaction@54.190.231.180 -p 22
+            ssh -i ~/.ssh/mysshkey.pem  gitaction@54.190.231.180
             ls -lrt
       env:
           SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
