@@ -25,11 +25,15 @@ jobs:
           name: testing1
           path: .
     - name: Deploy to Server
-      run: |
-           mkdir ~/.ssh
-           echo "$my_ssh_key" > ~/.ssh/gh_actions_key
-           chmod 600 ~/.ssh/gh_actions_key
-           sshpass -p vagrant scp -r /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar root@172.42.42.102:/root/chumma/
+      uses: amar5607/maven_testing_1@master
       env:
-          my_ssh_key: ${{ secrets.SSH_KEY }}
+        HOST: 172.42.42.102
+        USERNAME: root
+        port : 22
+        key: ${{ secrets.SSH_KEY }}
+      with:
+        source: "./target/*.jar"
+        target: "/root/chumma/"
+           
+           
           
