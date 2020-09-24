@@ -16,16 +16,14 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: rsync over ssh   
+    - name: npm install and build webpack
+      env:
+          remote_key: ${{ secrets.SSH_KEY }}
       run: |
-            mvn -B package --file pom.xml
-    - name: Upload math result for job 2
-      uses: actions/upload-artifact@amar5607-patch-1
-      with:
-          name: testing1
-          path: .
-    - name: rsync over ssh   
-      run: sshpass -p vagrant rsync -ae "ssh -p 22" ./testing/target/  root@172.42.42.101:/root/chumma
-
+           mvn -B package --file pom.xml
+           mkdir ~/.ssh
+           echo "$remote_key" > ~/.ssh/gh_actions_key
+           chmod 600 ~/.ssh/gh_actions_key
+           rsync -avzr --delete -e "ssh -p 22 -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" public/ root@172.42.42.102:/root/chumma/
            
           
