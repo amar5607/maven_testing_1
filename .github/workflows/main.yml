@@ -22,9 +22,10 @@ jobs:
             mvn -B package --file pom.xml
             mkdir -p ~/.ssh/
             echo "$SSH_PRIVATE_KEY" > ~/.ssh/my_ssh_key
-            chmod 600 ~/.ssh/my_ssh_key
-            ls -lrt ~/.ssh/my_ssh_key
-            ssh -i ~/.ssh/my_ssh_key  gitaction@54.190.231.180
+            cp -r ~/.ssh/my_ssh_key ~/.ssh/mysshkey.pem
+            chmod 400 ~/.ssh/mysshkey.pem
+            ls -lrt ~/.ssh/mysshkey.pem
+            ssh -i ~/.ssh/mysshkey.pem  gitaction@54.190.231.180
             ls -lrt
       env:
           SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
