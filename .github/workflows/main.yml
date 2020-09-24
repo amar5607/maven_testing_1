@@ -25,7 +25,7 @@ jobs:
             chmod 400 ~/.ssh/tmp_file.pem
             ls -lrt ~/.ssh
             ssh -o StrictHostKeyChecking=no -i ~/.ssh/tmp_file.pem  gitaction@54.190.231.180 uptime
-            ssh -i ~/.ssh/tmp_file.pem  gitaction@54.190.231.180
+            ssh -t -i ~/.ssh/tmp_file.pem  gitaction@54.190.231.180
             ls -lrt
       env:
           SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
