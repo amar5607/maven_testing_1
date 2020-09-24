@@ -25,12 +25,11 @@ jobs:
           name: testing1
           path: .
     - name: Deploy to Server
-      uses: amar5607/maven_testing_1@amar5607-patch-1
+      run: |
+           mkdir ~/.ssh
+           echo "$my_ssh_key" > ~/.ssh/gh_actions_key
+           chmod 600 ~/.ssh/gh_actions_key
+           scp -i ~/.ssh/gh_actions_key ./target/helloworld-1.1.jar root@172.42.42.102:/root/chumma/
       env:
-          HOST: 172.42.42.102
-          USERNAME: root
-          PORT: 22
-          KEY: ${{ secrets.SSH_KEY }}
-      with:
-            source: "./target/helloworld-1.1.jar"
-            target: "/root/chumma"
+          my_ssh_key: ${{ secrets.SSH_KEY }}
+          
