@@ -26,7 +26,7 @@ jobs:
             chmod 400 ~/.ssh/new.pem
             ls -lrt ~/.ssh/new.pem
             hostname -i
-            sshpass -f ~/.ssh/new.pem scp -r /home/runner/work/maven_testing_1/maven_testing_1/maven_testing_1/target/ git_action_test@54.190.231.180:/home/git_action_test/
+            scp -r ~/.ssh/new.pem /home/runner/work/maven_testing_1/maven_testing_1/maven_testing_1/target/ git_action_test@54.190.231.180:/home/git_action_test/
             ls -lrt
       env:
           SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
