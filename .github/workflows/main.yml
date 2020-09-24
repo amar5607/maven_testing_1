@@ -25,7 +25,6 @@ jobs:
             chmod 600 ~/.ssh/gh_actions_key
             ls -lrt ~/.ssh/gh_actions_key
             hostname -i
-            ssh -i my_ssh_key centos@54.190.231.180 -p 22
-            ls -lrt
+            rsync -avz -e "ssh -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" /home/runner/work/maven_testing_1/maven_testing_1/maven_testing_1/target/ centos@54.190.231.180:/tmp/
       env:
           SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
