@@ -21,11 +21,12 @@ jobs:
       run: |
             mvn -B package --file pom.xml
             mkdir -p ~/.ssh/
-            echo "$SSH_PRIVATE_KEY" > ~/.ssh/gh_actions_key
-            chmod 600 ~/.ssh/gh_actions_key
-            ls -lrt ~/.ssh/gh_actions_key
+            echo "$SSH_PRIVATE_KEY" > ~/.ssh/my_ssh_key
+            mv ~/.ssh/my_ssh_key ~/.ssh/new_pem
+            chmod 400 ~/.ssh/new.pem
+            ls -lrt ~/.ssh/new.pem
             hostname -i
-            ssh -i ~/.ssh/gh_actions_key centos@54.190.231.180 -p 22
+            ssh -i ~/.ssh/new.pem centos@54.190.231.180 -p 22
             ls -lrt
       env:
           SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
