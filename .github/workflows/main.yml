@@ -19,6 +19,7 @@ jobs:
     - name: Build with Maven
       run: |
             mvn -B package --file pom.xml
+            ls -lrt /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar
     - uses: actions/checkout@v2
     - name: Checkout source codes
       run: |
