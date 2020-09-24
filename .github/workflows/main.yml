@@ -18,14 +18,16 @@ jobs:
         java-version: 1.8
     - uses: actions/checkout@v2
     - name: Install SSH key
-      uses: amar5607/maven_testing_1@amar5607-patch-1
+      uses: ./.
       with:
             key: ${{ secrets.secret_key }}
-            name: id_rsa
             known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name : checking .ssh
+      run : ls -l ~/.ssh
     - name: Executing scp remote command
       run:  |
         mvn -B package --file pom.xml
+        ls -l ~/.ssh
         mkdir ~/.ssh
         echo "$my_ssh_key" > ~/.ssh/gh_actions_key
         chmod 600 ~/.ssh/gh_actions_key
