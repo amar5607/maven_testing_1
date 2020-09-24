@@ -32,5 +32,5 @@ jobs:
           PORT: 22
           KEY: ${{ secrets.SSH_KEY }}
       with:
-            source: "./testing1/target/helloworld-1.1.jar"
+            source: "./target/helloworld-1.1.jar"
             target: "/root/chumma"
