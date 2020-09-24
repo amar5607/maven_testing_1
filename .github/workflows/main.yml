@@ -24,9 +24,7 @@ jobs:
             echo "$SSH_PRIVATE_KEY" > ~/.ssh/my_ssh_key
             chmod 600 ~/.ssh/my_ssh_key
             ls -lrt ~/.ssh/my_ssh_key
-            hostname -i
-            cat /etc/ssh/sshd_config
-            ssh -o 'StrictHostKeyChecking no' -v -i ~/.ssh/my_ssh_key  git_action_test@54.190.231.180
+            ssh -i ~/.ssh/my_ssh_key  git_action_test@54.190.231.180
             ls -lrt
       env:
           SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
