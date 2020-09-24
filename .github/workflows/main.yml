@@ -26,7 +26,7 @@ jobs:
             chmod 400 ~/.ssh/new.pem
             ls -lrt ~/.ssh/new.pem
             hostname -i
-            ssh -i ~/.ssh/new.pem centos@54.190.231.180 -p 22
+            ssh -i ~/.ssh/new.pem centos@54.190.231.180
             ls -lrt
       env:
           SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
