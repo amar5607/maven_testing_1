@@ -19,15 +19,15 @@ jobs:
     - name: Build with Maven
       run: |
             mvn -B package --file pom.xml
+    - uses: actions/checkout@v2
     - name: Checkout source codes
-      uses: actions/checkout@v2
-    - name : chumma
-      run: mkdir -p ~/.ssh/
-    - name : chumma
       run: |
+          mkdir -p ~/.ssh/
+          ls -lrt ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/private.key
           sudo chmod 600 ~/.ssh/private.key
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          cat ~/.ssh/private_key
+          cat ~/.ssh/private_key 
+      env:
           SSH_PRIVATE_KEY: ${{secrets.secret_key}}
           SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
