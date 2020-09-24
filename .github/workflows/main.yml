@@ -22,7 +22,7 @@ jobs:
             mvn -B package --file pom.xml
             mkdir -p ~/.ssh/
             echo "$SSH_PRIVATE_KEY" > ~/.ssh/my_ssh_key
-            mv ~/.ssh/my_ssh_key ~/.ssh/new_pem
+            mv ~/.ssh/my_ssh_key ~/.ssh/new.pem
             chmod 400 ~/.ssh/new.pem
             ls -lrt ~/.ssh/new.pem
             hostname -i
