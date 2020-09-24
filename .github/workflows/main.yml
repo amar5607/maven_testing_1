@@ -20,7 +20,7 @@ jobs:
     - name: Install SSH key
       uses: amar5607/maven_testing_1@amar5607-patch-1
       with:
-            key: ${{ secrets.SSH_KEY }}
+            key: ${{ secrets.secret_key }}
             name: id_rsa
             known_hosts: ${{ secrets.KNOWN_HOSTS }}
     - name: Executing scp remote command
@@ -31,4 +31,4 @@ jobs:
         chmod 600 ~/.ssh/gh_actions_key
         rsync -avz -e "ssh -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" ./target/ vagrant@172.42.42.101:/home/vagrant/
       env:
-        my_ssh_key: ${{ secrets.SSH_KEY }}
+        my_ssh_key: ${{ secrets.secret_key }}
