@@ -24,9 +24,9 @@ jobs:
     - name : chumma
       run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ../private.key
-          sudo chmod 600 ../private.key
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/private.key
+          sudo chmod 600 ~/.ssh/private.key
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          cat ../private_key
+          cat ~/.ssh/private_key
           SSH_PRIVATE_KEY: ${{secrets.secret_key}}
           SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
