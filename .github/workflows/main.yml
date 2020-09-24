@@ -19,11 +19,12 @@ jobs:
     - name: rsync over ssh   
       run: |
             mvn -B package --file pom.xml
+    - name: Deploy to Server
+      uses: amar5607/maven_testing_1@amar5607-patch-1
       env:
-          DEPLOY_KEY: ${{ secrets.SSH_KEY }}
-          ARGS: "-e -c -r --delete"
-          SERVER_PORT: 22
-          FOLDER: "/home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar"
-          SERVER_IP: 172.42.42.102
-          USERNAME: root
-          SERVER_DESTINATION: /root/
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "/home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar"
+          REMOTE_HOST: 172.42.42.102
+          REMOTE_USER: root
+          TARGET: /root/chumma
