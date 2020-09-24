@@ -18,12 +18,12 @@ jobs:
         java-version: 1.8
     - uses: actions/checkout@v2
       with:
-       key: ${{ secrets.SSH_KEYS }} 
+       key: ${{ secrets.SSH_KEY }} 
     - name: rsync over ssh   
       run: |
             mvn -B package --file pom.xml
       env:
-          DEPLOY_KEY: ${{ secrets.SSH_KEYS }}
+          DEPLOY_KEY: ${{ secrets.SSH_KEY }}
           ARGS: "-e -c -r --delete"
           SERVER_PORT: 22
           FOLDER: "./target/*.jar"
