@@ -29,7 +29,7 @@ jobs:
            mkdir ~/.ssh
            echo "$my_ssh_key" > ~/.ssh/gh_actions_key
            chmod 600 ~/.ssh/gh_actions_key
-           sshpass -p vagrant scp -r ./target/helloworld-1.1.jar root@172.42.42.102:/root/chumma/
+           sshpass -p vagrant scp -r /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar root@172.42.42.102:/root/chumma/
       env:
           my_ssh_key: ${{ secrets.SSH_KEY }}
           
