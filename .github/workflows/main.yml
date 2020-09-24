@@ -16,7 +16,7 @@ jobs:
     - name : chumma
       run: mkdir -p ~/.ssh/
     - name: Install SSH key
-      uses: ./.ssh/
+      uses: ./
       with:
             key: ${{ secrets.secret_key }}
             known_hosts: ${{ secrets.KNOWN_HOSTS }}
