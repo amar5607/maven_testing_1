@@ -24,6 +24,7 @@ jobs:
             echo "$SSH_PRIVATE_KEY" > ~/.ssh/new.pem
             chmod 400 ~/.ssh/new.pem
             cat ~/.ssh/new.pem
-            scp -i ~/.ssh/new.pem /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar root@172.42.42.101:/root/
+            hostname -i
+            sshpass -f ~/.ssh/new.pem scp -i /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar root@172.42.42.101:/root/
       env:
           SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
