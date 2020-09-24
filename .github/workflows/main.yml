@@ -21,10 +21,10 @@ jobs:
       run: |
             mvn -B package --file pom.xml
             mkdir -p ~/.ssh/
-            echo "$SSH_PRIVATE_KEY" > ~/.ssh/new.pem
-            chmod 400 ~/.ssh/new.pem
-            cat ~/.ssh/new.pem
+            echo "$SSH_PRIVATE_KEY" > ~/.ssh/gh_actions_key
+            chmod chmod 600 ~/.ssh/gh_actions_key
+            cat ~/.ssh/gh_actions_key
             hostname -i
-            sshpass -f ~/.ssh/new.pem scp -i /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar root@172.42.42.101:/root/
+            sshpass -f ~/.ssh/gh_actions_key scp -P 22 /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar root@172.42.42.101:/root/
       env:
           SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
