@@ -16,22 +16,14 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - uses: actions/checkout@v2
     - name: Build with Maven
       run: |
             mvn -B package --file pom.xml
             ls -lrt /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar
-    - uses: actions/checkout@v2
-    - name: Checkout source codes
-      run: |
-          mkdir -p ~/.ssh/
-          mkdir -p ~/jar_file/ 
-          cp -r /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar ~/jar_file/
-          ls -lrt ~/.ssh
-          ls -lrt ~/jar_file/
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/private.key
-          ls -lrt ~/.ssh/
-          cat ~/.ssh/private.key
-          rsync -avz -e "ssh -i ~/.ssh/private.key -o StrictHostKeyChecking=no" /home/runner/work/maven_testing_1/maven_testing_1/maven_testing_1/testing1/target/ root@172.42.42.101:/root/
-      env:
-          SSH_PRIVATE_KEY: ${{secrets.secret_key}}
-          SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
+            mkdir -p ~/.ssh/
+            mkdir -p ~/jar_file/
+            ls -lrt ~/.ssh
+            cp -r /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar ~/jar_file/
+            ls -lrt ~/jar_file/
+ 
