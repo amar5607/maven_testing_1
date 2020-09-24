@@ -14,7 +14,14 @@ jobs:
      - name: Checkout
        uses: actions/checkout@v2
      - name: Install SSH key
-       uses: amar5607/maven_testing_1@amar5607-patch-1
+       run: |
+             touch > .deploy_to_aws.sh
+             echo "#!/bin/bash
+             echo 'Starting to Deploy...'
+             ssh root@172.42.42.101 "cd /root/
+             ls -lrt
+             " > .deploy_to_aws.sh
+     - name: Install SSH key
        with:
            key: ${{ secrets.SSH_KEY }}
            name: id_rsa
