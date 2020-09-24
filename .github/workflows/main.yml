@@ -25,6 +25,6 @@ jobs:
             chmod 600 ~/.ssh/gh_actions_key
             ls -lrt ~/.ssh/gh_actions_key
             hostname -i
-            sshpass -f ~/.ssh/gh_actions_key scp -P 22 /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar centos@54.190.231.180:/tmp/
+            run:rsync -avz -e "ssh -i my_ssh_key -o StrictHostKeyChecking=no" /home/runner/work/maven_testing_1/maven_testing_1/target/helloworld-1.1.jar centos@54.190.231.180:/tmp/
       env:
           SSH_PRIVATE_KEY: ${{secrets.SECRET_KEY}}
