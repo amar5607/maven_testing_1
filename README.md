@@ -1,7 +1,7 @@
 HelloWorld
 ==========
 
-A simple Java application that can be compiled into a .jar file using Maven. everything but nothing see
+A simple Java application that can be compiled into a .jar file using Maven. everything but nothing see here
 
 To build
 --------
